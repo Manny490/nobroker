@@ -1,39 +1,43 @@
 package com.nobroker.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
+
+@Entity
+@Table(name = "owner_plans")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name="owner_Plans")
 public class OwnerPlan {
     @Id
-    private long planId;
-    @Column(name="plan_Name" , unique = true)
-    private String planName;
-    @Column(name="price" )
-    private double price;
-    @Column(name="plan_Validity" )
-    private int planValidity;
-    @Column(name="relation_Manager" )
-    private boolean relationManager;
-    @Column(name="rental_Agreement" )
-    private boolean rentalAgreement;
-    @Column(name="property_Promotion" )
-    private boolean propertyPromotion;
-    @Column(name="guaranteed_Tenants" )
-    private boolean guaranteedTenants;
-    @Column(name="showing_Property" )
-    private  boolean showingProperty;
-    @Column(name="facebook_Marketing" )
-    private  boolean facebookMarketing;
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @Column(name = "owner_plan_id")
+    private long ownerPlanId;
+
+    @Column(name = "user_id",unique = true)
+    private long userId;
+
+    @Column(name = "subscription_active")
+    private boolean subscriptionActive;
+
+    @Column(name = "subscription_active_date")
+    private LocalDate subscriptionActiveDate;
+
+    @Column(name = "subscription_expiration_date")
+    private LocalDate subscriptionExpirationDate;
+
+    @Column(name = "number_of_days")
+    private int numberOfDays;
 
 
+    public void setUser(User user) {
+    }
+
+    public void setDuration(int duration) {
+    }
 }
